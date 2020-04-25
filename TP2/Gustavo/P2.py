@@ -1,3 +1,6 @@
+# En el string 'path' se debe poner la dirección absoluta del directorio donde se encuentran los archivos
+# porque no pude hacer que "cv2.imread" lea la dirección relativa. 
+
 path='/media/gustavo/DATOS/Facu/6to/Vision/Practicos/Practico2'
 
 import cv2
