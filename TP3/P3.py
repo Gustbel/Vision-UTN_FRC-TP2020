@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+
 # Se puso otro color de conversion porque Blanco y Negro da error en el archivo resultado output.avi
 
 # En el string 'path' se debe poner la dirección absoluta del directorio donde se encuentran los archivos

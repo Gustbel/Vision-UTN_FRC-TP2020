@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+
 import cv2
 import numpy as np
 
@@ -27,7 +31,7 @@ def draw_rectangle (event, x, y, flags, param):
         entro = True
     
 
-img = cv2.imread(path + '/leon.png')    
+img = cv2.imread("./leon.png")    
 img_orig = cv2.imread(path + '/leon.png')  #Cargamos dos veces porque la variable img se modificará
 
 cv2.namedWindow ( ' image ' )
