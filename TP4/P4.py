@@ -1,7 +1,14 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+
 import cv2
 import numpy as np
+import os
 
-path='/media/gustavo/DATOS/Facu/6to/Vision/Practicos/Practico4'
+path = os.path.dirname(os.path.realpath(__file__))
+print(path)
+
 
 drawing = False # true if mouse is pressed
 
@@ -9,43 +16,46 @@ ix = -1
 iy = -1
 fx = 0
 fy = 0
-entro = False
+
+img = cv2.imread( path + '/leon.png')  
+img_orig = cv2.imread(path + '/leon.png')  #Cargamos dos veces porque la variable img se modificará
 
 def draw_rectangle (event, x, y, flags, param):
-    global ix, iy, fx, fy, drawing, entro
+    global ix, iy, fx, fy, drawing, imagen
+    
     if event == cv2.EVENT_LBUTTONDOWN:
         drawing = True
         ix , iy = x, y
     elif event == cv2.EVENT_MOUSEMOVE:
         if drawing is True :
-            cv2.rectangle(img, (ix,iy), (x ,y) , (0, 255, 0), 1)
+            imagen = img.copy()
+            cv2.rectangle(imagen, (ix,iy), (x ,y) , (0,0,0), 1)
+            cv2.imshow( ' image ' , imagen )
 
     elif event == cv2.EVENT_LBUTTONUP:
         drawing = False
-        cv2.rectangle(img, (ix,iy), (x,y), (0 , 255 , 0), -1)
+        imagen = img.copy()
+        cv2.rectangle(imagen, (ix,iy), (x,y), (0,0,0), -1)
         fx, fy = x, y
-        entro = True
-    
+        imagen = img[iy: fy, ix: fx]
+        cv2.imshow( ' image ' , imagen )
 
-img = cv2.imread(path + '/leon.png')    
-img_orig = cv2.imread(path + '/leon.png')  #Cargamos dos veces porque la variable img se modificará
+cv2.imshow( ' image ' , img )
 
 cv2.namedWindow ( ' image ' )
 cv2.setMouseCallback(' image ', draw_rectangle)
 
-
 while ( 1 ):           # Sostiene la imagen 
-    cv2.imshow( ' image ' , img )
-    if entro == True:
-        img = img_orig[iy: fy, ix: fx]    # Corta la imagen
-        
     k = cv2.waitKey ( 1 ) &0xFF
-    if k == ord( 'q' ) :
-        mode = not mode         #Finaliza
+
     if k == ord( 'g' ) :
-        cv2.imwrite(path + '/resultado.png' , img)
+        cv2.imwrite(path + '/resultado.png' , imagen)
+        print ("Guardado!")
     if k == ord( 'r' ) :
         img=cv2.imread(path + '/leon.png')   
-        entro = False
+        cv2.imshow( ' image ' , img )
+        print ("Imagen Restaurada")
+    if k == ord( 'q' ) :
+        break        #Finaliza
     
 cv2.destroyAllWindows()
