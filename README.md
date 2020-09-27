@@ -9,3 +9,6 @@ Repositorio de los Trabajos Prácticos del Grupo 9 de Visión por Computadora
 - TP6   --    Terminado -> Falta Corregir
 - TP7   --    Terminado -> Falta Corregir
 - TP8   --    En desarrollo
+- TP9   --    Terminado -> Falta Corregir
+
+[Link GDocs Grupos](https://docs.google.com/spreadsheets/d/1c0mZrhRp3IqkLgLlVQ4Xtun66Fzlwwnp_PgDkazGLRc/edit?usp=sharing)
