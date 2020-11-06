@@ -37,8 +37,8 @@ def seleccionPuntos(event, x, y, flags, param):
 
 def homografia(imagen, height, width):
     height, width = imagen.shape[0], imagen.shape[1]
-    source = np.array([p1, p2, p3, p4], dtype=np.float32)
-    dest = np.array([[0, 0], [0, width], [height, width], [height, 0]], dtype=np.float32)
+    source = np.array([p1, p2, p4, p3], dtype=np.float32) # Inverted point to respect transformation order
+    dest = np.array([[0, 0], [width, 0], [0 , height], [width, height]], dtype=np.float32)
     matrix = cv2.getPerspectiveTransform(source, dest)
     result = cv2.warpPerspective(imagen, matrix,(width, height))
     return result
@@ -61,7 +61,7 @@ try:
             w = int(input("Ingrese el ancho de la imagen rectangular de salida deseado:\n"))
             h = int(input("Ingrese el alto de la imagen rectangular de salida deseado:\n"))
             print("Guardando el resultado de la imagen en salida.png")
-            salida = homografia(img, h, w)
+            salida = homografia(original, h, w)
             cv2.imwrite(path+"/img/salida.png", salida)
             cv2.namedWindow("salida")
             cv2.imshow("salida", salida)
